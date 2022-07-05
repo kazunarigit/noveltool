@@ -8,10 +8,10 @@
         </div>
         <div class="row">
             <div class="col-md-4">
-                <a href="{{ action('Admin\NewsController@add') }}" role="button" class="btn btn-primary">新規作成</a>
+                <a href="{{ action('Admin\NovelWritingController@create') }}" role="button" class="btn btn-primary">新規作成</a>
             </div>
             <div class="col-md-8">
-                <form action="{{ action('Admin\NewsController@index') }}" method="get">
+                <form action="{{ action('Admin\NovelWritingController@index') }}" method="get">
                     <div class="form-group row">
                         <label class="col-md-2">タイトル</label>
                         <div class="col-md-8">
@@ -38,17 +38,17 @@
                             </tr>
                         </thead>
                         <tbody>
-                             @foreach($posts as $news)
+                             @foreach($posts as $novel)
                                 <tr>
-                                    <th>{{ $news->id }}</th>
-                                    <td>{{ \Str::limit($news->title, 100) }}</td>
-                                    <td>{{ \Str::limit($news->body, 250) }}</td>
+                                    <th>{{ $novel->id }}</th>
+                                    <td>{{ \Str::limit($novel->title, 100) }}</td>
+                                    <td>{{ \Str::limit($novel->body, 250) }}</td>
                                     <td>
                                         <div>
-                                            <a href="{{ action('Admin\NewsController@edit', ['id' => $news->id]) }}">編集</a>
+                                            <a href="{{ action('Admin\NovelWritingController@edit', ['id' => $novel->id]) }}">編集</a>
                                         </div>
                                         <div>
-                                            <a href="{{ action('Admin\NewsController@delete', ['id' => $news->id]) }}">削除</a>
+                                            <a href="{{ action('Admin\NovelWritingController@delete', ['id' => $novel->id]) }}">削除</a>
                                         </div>
                                     </td>
                                 </tr>

@@ -43,11 +43,6 @@
                                     {{ \Str::limit($post->body, 1500) }}
                                 </div>
                             </div>
-                            <div class="image col-md-6 text-right mt-4">
-                                @if ($post->image_path)
-                                    <img src="{{ $post->image_path }}">
-                                @endif
-                            </div>
                         </div>
                     </div>
                     <hr color="#c0c0c0">
