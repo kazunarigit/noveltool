@@ -15,6 +15,7 @@ class CreateNovelWritingsTable extends Migration
     {
         Schema::create('novel_writings', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('title');//小説タイトル
             $table->string('chapter');// 章
             $table->string('section');// 節
             $table->string('content');// 本文
