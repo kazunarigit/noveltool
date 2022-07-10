@@ -42,7 +42,7 @@
                                 <tr>
                                     <th>{{ $novel->id }}</th>
                                     <td>{{ \Str::limit($novel->title, 100) }}</td>
-                                    <td>{{ \Str::limit($novel->body, 250) }}</td>
+                                   // <td>{{ \Str::limit($novel->body, 250) }}</td>
                                     <td>
                                         <div>
                                             <a href="{{ action('Admin\NovelWritingController@edit', ['id' => $novel->id]) }}">編集</a>

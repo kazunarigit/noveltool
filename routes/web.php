@@ -18,13 +18,13 @@ Route::get('/', function () {
 
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
     
-    Route::get('/index', 'Admin\NovelController@index');
-    Route::get('/index/create', 'Admin\NovelController@crerate');
-    Route::post('/index', 'Admin\NovelController@store');
-    Route::get('/index/confirm', 'Admin\NovelController@show');
-    Route::get('/index/edit', 'Admin\NovelController@edit');
-    Route::get('/index/delete', 'Admin\NovelController@destroy');
+    Route::get('/index', 'Admin\NovelWritingController@index');
+    Route::get('/index/create', 'Admin\NovelWritingController@crerate');
+    Route::post('/index', 'Admin\NovelWritingController@store');
+    Route::get('/index/confirm', 'Admin\NovelWritingController@show');
+    Route::get('/index/edit', 'Admin\NovelWritingController@edit');
+    Route::get('/index/delete', 'Admin\NovelWritingController@destroy');
 });
 
 Auth::routes();
-Route::get('/', 'NovelController@index');
+Route::get('/', 'NovelWritingController@index');
