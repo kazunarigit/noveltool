@@ -21,9 +21,9 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label class="col-md-2" for="body">本文</label>
+                        <label class="col-md-2" for="content">本文</label>
                         <div class="col-md-10">
-                            <textarea class="form-control" name="body" rows="20">{{ $novelwriting_form->body }}</textarea>
+                            <textarea class="form-control" name="content" rows="20">{{ $novelwriting_form->content }}</textarea>
                         </div>
                     </div>
                     <div class="form-group row">
