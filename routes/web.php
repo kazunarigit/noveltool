@@ -19,11 +19,11 @@ Route::get('/', function () {
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
     
     Route::get('/index', 'Admin\NovelWritingController@index');
-    Route::get('/index/create', 'Admin\NovelWritingController@crerate');
+    Route::get('/admin/create', 'Admin\NovelWritingController@crerate');
     // Route::post('/index', 'Admin\NovelWritingController@store');
     // Route::get('/index/confirm', 'Admin\NovelWritingController@show');
-    Route::get('/index/edit', 'Admin\NovelWritingController@edit');
-    Route::get('/index/delete', 'Admin\NovelWritingController@destroy');
+    Route::get('/admin/edit', 'Admin\NovelWritingController@edit');
+    Route::get('/admin/delete', 'Admin\NovelWritingController@destroy');
 });
 
 Auth::routes();
