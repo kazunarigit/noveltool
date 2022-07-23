@@ -15,7 +15,7 @@
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <p class="body mx-auto">{{ \Str::limit($headline->body, 650) }}</p>
+                            <p class="content mx-auto">{{ \Str::limit($headline->content, 650) }}</p>
                         </div>
                     </div>
                 </div>
@@ -34,8 +34,8 @@
                                 <div class="title">
                                     {{ \Str::limit($post->title, 150) }}
                                 </div>
-                                <div class="body mt-3">
-                                    {{ \Str::limit($post->body, 1500) }}
+                                <div class="content mt-3">
+                                    {{ \Str::limit($post->content, 1500) }}
                                 </div>
                             </div>
                         </div>
@@ -44,6 +44,5 @@
                 @endforeach
             </div>
         </div>
-    </div>
     </div>
 @endsection
