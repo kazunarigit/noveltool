@@ -11,7 +11,7 @@ class NovelWritingController extends Controller
 {
     //
     public function add(){
-        return view('admin.create');
+        // return view('admin.create');
     }
     
     /**
@@ -53,7 +53,7 @@ class NovelWritingController extends Controller
       $novelwriting->save();
       
       // admin/createにリダイレクトする
-      return redirect('admin/create');
+      return view('admin/create');
     }
 
     /**
@@ -75,7 +75,13 @@ class NovelWritingController extends Controller
      */
     public function show(NovelWriting $novelWriting)
     {
-        //
+        $cond_title = $request->cond_title;
+    if ($cond_title != '') {
+        // 検索されたら検索結果を取得する
+        $posts = NovelWriting::where('title', $cond_title)->get();
+    }else{
+        // それ以外はすべてのニュースを取得する
+        $posts = NovelWriting::all();
     }
 
     /**
@@ -84,7 +90,7 @@ class NovelWritingController extends Controller
      * @param  \App\NovelWriting  $novelWriting
      * @return \Illuminate\Http\Response
      */
-    public function edit(Request $request, NovelWriting $novelWriting)
+    public function edit(Request $request, $id, NovelWriting $novelWriting)
     {
         // News Modelからデータを取得する
       $novelWriting = NovelWriting::find($request->id);
@@ -101,7 +107,7 @@ class NovelWritingController extends Controller
      * @param  \App\NovelWriting  $novelWriting
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, NovelWriting $novelWriting)
+    public function update(Request $request, $id, NovelWriting $novelWriting)
     {
         // Validationをかける
       $this->validate($request, NovelWriting::$rules);
@@ -133,7 +139,7 @@ class NovelWritingController extends Controller
      * @param  \App\NovelWriting  $novelWriting
      * @return \Illuminate\Http\Response
      */
-    public function delete(Request $request, NovelWriting $novelWriting)
+    public function delete(Request $request, $id, NovelWriting $novelWriting)
     {
         // 該当するNews Modelを取得
       $novelWriting = NovelWriting::find($request->id);

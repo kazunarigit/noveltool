@@ -22,7 +22,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
     // Route::get('/create', 'Admin\NovelWritingController@add')->name('novelwriting.add');
     Route::post('/index/new', 'Admin\NovelWritingController@create')->name('novelwriting.new');
     Route::post('/index', 'Admin\NovelWritingController@store')->name('novelwriting.store');
-    // Route::get('/index/confirm', 'Admin\NovelWritingController@show');
+    Route::get('/index/{id}', 'Admin\NovelWritingController@show')->name('novelwriting.show');
     Route::get('/edit/{id}', 'Admin\NovelWritingController@edit')->name('novelwriting.edit');
     Route::post('/update/{id}', 'Admin\NovelWritingController@update')->name('novelwriting.update');
     Route::delete('/index/{id}', 'Admin\NovelWritingController@destroy')->name('novelwriting.delete');
