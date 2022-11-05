@@ -21,7 +21,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
     Route::get('/index', 'Admin\NovelWritingController@index');
     Route::get('/create', 'Admin\NovelWritingController@add');
     Route::get('/new', 'Admin\NovelWritingController@create');
-    Route::post('/index', 'Admin\NovelWritingController@store');
+    // Route::post('/index', 'Admin\NovelWritingController@store');
     Route::get('/index/{id}', 'Admin\NovelWritingController@show');
     Route::get('/edit/{id}', 'Admin\NovelWritingController@edit');
     Route::post('/update/{id}', 'Admin\NovelWritingController@update');

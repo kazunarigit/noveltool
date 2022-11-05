@@ -73,7 +73,7 @@ class NovelWritingController extends Controller
      * @param  \App\NovelWriting  $novelWriting
      * @return \Illuminate\Http\Response
      */
-    public function show(NovelWriting $novelWriting)
+    public function show(Request $request, NovelWriting $novelWriting)
     {
         $cond_title = $request->cond_title;
         if ($cond_title != '') {
@@ -82,6 +82,7 @@ class NovelWritingController extends Controller
         }else{
         // それ以外はすべてのニュースを取得する
             $posts = NovelWriting::all();
+        }
     }
 
     /**
