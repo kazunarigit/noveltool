@@ -18,14 +18,14 @@ Route::get('/', function () {
 
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
     
-    Route::get('/index', 'Admin\NovelWritingController@index')->name('novelwriting.list');
-    // Route::get('/create', 'Admin\NovelWritingController@add')->name('novelwriting.add');
-    Route::post('/index/new', 'Admin\NovelWritingController@create')->name('novelwriting.new');
-    Route::post('/index', 'Admin\NovelWritingController@store')->name('novelwriting.store');
-    Route::get('/index/{id}', 'Admin\NovelWritingController@show')->name('novelwriting.show');
-    Route::get('/edit/{id}', 'Admin\NovelWritingController@edit')->name('novelwriting.edit');
-    Route::post('/update/{id}', 'Admin\NovelWritingController@update')->name('novelwriting.update');
-    Route::delete('/index/{id}', 'Admin\NovelWritingController@destroy')->name('novelwriting.delete');
+    Route::get('/index', 'Admin\NovelWritingController@index');
+    Route::get('/create', 'Admin\NovelWritingController@add');
+    Route::get('/new', 'Admin\NovelWritingController@create');
+    Route::post('/index', 'Admin\NovelWritingController@store');
+    Route::get('/index/{id}', 'Admin\NovelWritingController@show');
+    Route::get('/edit/{id}', 'Admin\NovelWritingController@edit');
+    Route::post('/update/{id}', 'Admin\NovelWritingController@update');
+    Route::delete('/index/{id}', 'Admin\NovelWritingController@destroy');
 });
 Route::get('/index', 'NovelWritingController@index');
 Auth::routes();

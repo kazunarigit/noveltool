@@ -22,14 +22,14 @@ class NovelWritingController extends Controller
     public function index(Request $request)
     {
         $cond_title = $request->cond_title;
-    if ($cond_title != '') {
+        if ($cond_title != '') {
         // 検索されたら検索結果を取得する
-        $posts = NovelWriting::where('title', $cond_title)->get();
-    }else{
+            $posts = NovelWriting::where('title', $cond_title)->get();
+        }else{
         // それ以外はすべてのニュースを取得する
-        $posts = NovelWriting::all();
-    }
-    return view('admin.index', ['posts' => $posts, 'cond_title' => $cond_title]);
+            $posts = NovelWriting::all();
+        }
+            return view('admin.index', ['posts' => $posts, 'cond_title' => $cond_title]);
     }
 
     /**
@@ -76,12 +76,12 @@ class NovelWritingController extends Controller
     public function show(NovelWriting $novelWriting)
     {
         $cond_title = $request->cond_title;
-    if ($cond_title != '') {
+        if ($cond_title != '') {
         // 検索されたら検索結果を取得する
-        $posts = NovelWriting::where('title', $cond_title)->get();
-    }else{
+            $posts = NovelWriting::where('title', $cond_title)->get();
+        }else{
         // それ以外はすべてのニュースを取得する
-        $posts = NovelWriting::all();
+            $posts = NovelWriting::all();
     }
 
     /**
@@ -99,7 +99,7 @@ class NovelWritingController extends Controller
       }
       return view('admin.edit', ['novelwriting_form' => $novelWriting]);
     }
-
+    
     /**
      * Update the specified resource in storage.
      *
@@ -123,16 +123,16 @@ class NovelWritingController extends Controller
 
       // 該当するデータを上書きして保存する
       $novelWriting->fill($novelWriting_form)->save();
-      /*
+      
       $history = new History();
         $history->news_id = $news->id;
         $history->edited_at = Carbon::now();
         $history->save();
-    */
+    
 
       return redirect('admin/index');
     }
-
+    
     /**
      * Remove the specified resource from storage.
      *
