@@ -11,7 +11,7 @@ class NovelWritingController extends Controller
 {
     //
     public function add(){
-        // return view('admin.create');
+        return view('admin.create');
     }
     
     /**
@@ -37,7 +37,7 @@ class NovelWritingController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request)
+    public function create(Request $request, NovelWriting $novelWriting)
     {
         // 以下を追記
       // Varidationを行う
@@ -64,7 +64,7 @@ class NovelWritingController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return redirect('admin.index');
     }
 
     /**
