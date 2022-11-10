@@ -27,7 +27,7 @@ Route::group(['prefix' => 'admin', 'as'=> 'admin', 'middleware' => 'auth'], func
     Route::get('/index/{id}', 'Admin\NovelWritingController@show');
     Route::get('/edit/{id}', 'Admin\NovelWritingController@edit');
     Route::post('/update/{id}', 'Admin\NovelWritingController@update');
-    Route::get('/index/delete', 'Admin\NovelWritingController@delete');
+    Route::get('/delete/{id}', 'Admin\NovelWritingController@delete');
     
 });
 Route::get('/index', 'NovelWritingController@index');
