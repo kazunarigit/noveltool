@@ -16,16 +16,19 @@ Route::get('/', function () {
 });
 */
 
-Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
+Route::group(['prefix' => 'admin', 'as'=> 'admin', 'middleware' => 'auth'], function() {
+    Route::resource('novel_writings', 'Admin\NovelWritingController');
     
-    Route::post('/', 'Admin\NovelWritingController@index');
-    Route::post('/create', 'Admin\NovelWritingController@add');
+    
+    Route::get('/', 'Admin\NovelWritingController@index');
+    Route::get('/create', 'Admin\NovelWritingController@add');
     Route::post('/new', 'Admin\NovelWritingController@create');
     Route::post('/index', 'Admin\NovelWritingController@store');
     Route::get('/index/{id}', 'Admin\NovelWritingController@show');
     Route::get('/edit/{id}', 'Admin\NovelWritingController@edit');
     Route::post('/update/{id}', 'Admin\NovelWritingController@update');
     Route::get('/index/delete', 'Admin\NovelWritingController@delete');
+    
 });
 Route::get('/index', 'NovelWritingController@index');
 Auth::routes();

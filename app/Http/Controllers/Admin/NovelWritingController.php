@@ -19,7 +19,7 @@ class NovelWritingController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index(Request $request, $posts)
     {
         $cond_title = $request->cond_title;
         if ($cond_title != '') {
@@ -73,7 +73,7 @@ class NovelWritingController extends Controller
      * @param  \App\NovelWriting  $novelWriting
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $request, NovelWriting $novelWriting)
+    public function show(Request $request, $id, NovelWriting $novelWriting)
     {
         $cond_title = $request->cond_title;
         if ($cond_title != '') {
@@ -83,6 +83,7 @@ class NovelWritingController extends Controller
         // それ以外はすべてのニュースを取得する
             $posts = NovelWriting::all();
         }
+        return view('admin.index', ['admin' => User::findOrFail($id)]);
     }
 
     /**
