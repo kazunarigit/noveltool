@@ -40,20 +40,20 @@ class NovelWritingController extends Controller
     public function create(Request $request, NovelWriting $novelWriting)
     {
         // 以下を追記
-      // Varidationを行う
-      $this->validate($request, NovelWriting::$rules);
+        // Varidationを行う
+        $this->validate($request, NovelWriting::$rules);
 
-      $novelwriting = new NovelWriting;
-      $form = $request->all();
+        $novelwriting = new NovelWriting;
+        $form = $request->all();
       
-       // フォームから送信されてきた_tokenを削除する
-      unset($form['_token']);
+        // フォームから送信されてきた_tokenを削除する
+        unset($form['_token']);
       
-      $novelwriting->fill($form);
-      $novelwriting->save();
+        $novelwriting->fill($form);
+        $novelwriting->save();
       
-      // admin/createにリダイレクトする
-      return view('admin/create');
+        // admin/createにリダイレクトする
+        return redirect('admin/create');
     }
 
     /**
@@ -62,9 +62,21 @@ class NovelWritingController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, NovelWriting $novelWriting)
     {
-        return redirect('admin.index');
+            // 以下を追記
+        // Varidationを行う
+        $this->validate($request, NovelWriting::$rules);
+
+        $novelwriting = new NovelWriting;
+        $form = $request->all();
+      
+        // フォームから送信されてきた_tokenを削除する
+        unset($form['_token']);
+      
+        $novelwriting->fill($form);
+        $novelwriting->save();
+        return view('admin.create');
     }
 
     /**
@@ -95,11 +107,11 @@ class NovelWritingController extends Controller
     public function edit(Request $request, $id, NovelWriting $novelWriting)
     {
         // News Modelからデータを取得する
-      $novelWriting = NovelWriting::find($request->id);
-      if (empty($novelWriting)) {
+        $novelWriting = NovelWriting::find($request->id);
+        if (empty($novelWriting)) {
         abort(404);    
-      }
-      return view('admin.edit', ['novelwriting_form' => $novelWriting]);
+        }
+        return view('admin.edit', ['novelwriting_form' => $novelWriting]);
     }
     
     /**
@@ -112,21 +124,21 @@ class NovelWritingController extends Controller
     public function update(Request $request, $id, NovelWriting $novelWriting)
     {
         // Validationをかける
-      $this->validate($request, NovelWriting::$rules);
-      // News Modelからデータを取得する
-      $novelWriting = NovelWriting::find($request->id);
-      // 送信されてきたフォームデータを格納する
-      $novelWriting_form = $request->all();
+        $this->validate($request, NovelWriting::$rules);
+        // News Modelからデータを取得する
+        $novelWriting = NovelWriting::find($request->id);
+        // 送信されてきたフォームデータを格納する
+        $novelWriting_form = $request->all();
        
 
       
-      unset($novelWriting_form['remove']);
-      unset($novelWriting_form['_token']);
+        unset($novelWriting_form['remove']);
+        unset($novelWriting_form['_token']);
 
-      // 該当するデータを上書きして保存する
-      $novelWriting->fill($novelWriting_form)->save();
+        // 該当するデータを上書きして保存する
+        $novelWriting->fill($novelWriting_form)->save();
       
-      $history = new History();
+        $history = new History();
         $history->news_id = $news->id;
         $history->edited_at = Carbon::now();
         $history->save();
@@ -144,9 +156,9 @@ class NovelWritingController extends Controller
     public function delete(Request $request, $id, NovelWriting $novelWriting)
     {
         // 該当するNews Modelを取得
-      $novelWriting = NovelWriting::find($request->id);
-      // 削除する
-      $novelWriting->delete();
-      return redirect('admin/index/');
+        $novelWriting = NovelWriting::find($request->id);
+        // 削除する
+        $novelWriting->delete();
+        return redirect('admin/index/');
     }
 }
