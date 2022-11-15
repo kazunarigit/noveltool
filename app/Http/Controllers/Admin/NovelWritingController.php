@@ -41,7 +41,7 @@ class NovelWritingController extends Controller
     {
         
       
-        // admin/createにリダイレクトする
+    
         return view('admin.create');
     }
 
