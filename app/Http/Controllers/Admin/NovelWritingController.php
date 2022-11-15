@@ -37,23 +37,12 @@ class NovelWritingController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request, NovelWriting $novelWriting)
+    public function create(Request $request)
     {
-        // 以下を追記
-        // Varidationを行う
-        $this->validate($request, NovelWriting::$rules);
-
-        $novelwriting = new NovelWriting;
-        $form = $request->all();
-      
-        // フォームから送信されてきた_tokenを削除する
-        unset($form['_token']);
-      
-        $novelwriting->fill($form);
-        $novelwriting->save();
+        
       
         // admin/createにリダイレクトする
-        return redirect('admin/create');
+        return view('admin.create');
     }
 
     /**
@@ -76,7 +65,7 @@ class NovelWritingController extends Controller
       
         $novelwriting->fill($form);
         $novelwriting->save();
-        return view('admin.create');
+        return redirect('admin/index');
     }
 
     /**
