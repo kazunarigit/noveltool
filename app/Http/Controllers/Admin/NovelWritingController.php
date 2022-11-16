@@ -11,7 +11,7 @@ class NovelWritingController extends Controller
 {
     //
     public function add(){
-        return view('admin.create');
+        return view('admin.novel_writings.create');
     }
     
     /**
@@ -19,7 +19,7 @@ class NovelWritingController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request, $posts)
+    public function index(Request $request)
     {
         $cond_title = $request->cond_title;
         if ($cond_title != '') {
@@ -29,7 +29,7 @@ class NovelWritingController extends Controller
         // それ以外はすべてのニュースを取得する
             $posts = NovelWriting::all();
         }
-            return view('admin.index', ['posts' => $posts, 'cond_title' => $cond_title]);
+            return view('admin.novel_writings.index', ['posts' => $posts, 'cond_title' => $cond_title]);
     }
 
     /**
@@ -42,7 +42,7 @@ class NovelWritingController extends Controller
         
       
     
-        return view('admin.create');
+        return view('admin.novel_writings.create');
     }
 
     /**
@@ -65,7 +65,7 @@ class NovelWritingController extends Controller
       
         $novelwriting->fill($form);
         $novelwriting->save();
-        return redirect('admin/index');
+        return redirect()->route('admin.novel_writings.index');
     }
 
     /**
@@ -84,7 +84,7 @@ class NovelWritingController extends Controller
         // それ以外はすべてのニュースを取得する
             $posts = NovelWriting::all();
         }
-        return view('admin.index', ['admin' => User::findOrFail($id)]);
+        return view('admin.novel_writings.index', ['admin' => User::findOrFail($id)]);
     }
 
     /**
@@ -100,7 +100,7 @@ class NovelWritingController extends Controller
         if (empty($novelWriting)) {
         abort(404);    
         }
-        return view('admin.edit', ['novelwriting_form' => $novelWriting]);
+        return view('admin.novel_writings.edit', ['novelwriting_form' => $novelWriting]);
     }
     
     /**
@@ -133,7 +133,7 @@ class NovelWritingController extends Controller
         $history->save();
     
 
-      return redirect('admin/index');
+      return redirect()->route('admin.novel_writings.index');
     }
     
     /**
@@ -148,6 +148,6 @@ class NovelWritingController extends Controller
         $novelWriting = NovelWriting::find($request->id);
         // 削除する
         $novelWriting->delete();
-        return redirect('admin/index/');
+        return redirect()->route('admin.novel_writings.index');
     }
 }
