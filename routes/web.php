@@ -16,7 +16,7 @@ Route::get('/', function () {
 });
 */
 
-Route::group(['prefix' => 'admin', 'as'=> 'admin', 'middleware' => 'auth'], function() {
+Route::group(['prefix' => 'admin', 'as'=> 'admin.', 'middleware' => 'auth'], function() {
     Route::resource('novel_writings', 'Admin\NovelWritingController');
 });
 Route::get('/index', 'NovelWritingController@index');
