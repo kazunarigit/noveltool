@@ -37,10 +37,8 @@ class NovelWritingController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request)
+    public function create()
     {
-        
-      
     
         return view('admin.novel_writings.create');
     }
@@ -51,7 +49,7 @@ class NovelWritingController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, NovelWriting $novelWriting)
+    public function store(Request $request)
     {
             // 以下を追記
         // Varidationを行う
@@ -93,13 +91,15 @@ class NovelWritingController extends Controller
      * @param  \App\NovelWriting  $novelWriting
      * @return \Illuminate\Http\Response
      */
-    public function edit(Request $request, $id, NovelWriting $novelWriting)
+    public function edit(NovelWriting $novelWriting)
     {
         // News Modelからデータを取得する
+        /*
         $novelWriting = NovelWriting::find($request->id);
         if (empty($novelWriting)) {
         abort(404);    
         }
+        */
         return view('admin.novel_writings.edit', ['novelwriting_form' => $novelWriting]);
     }
     
@@ -110,7 +110,7 @@ class NovelWritingController extends Controller
      * @param  \App\NovelWriting  $novelWriting
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id, NovelWriting $novelWriting)
+    public function update(Request $request, NovelWriting $novelWriting)
     {
         // Validationをかける
         $this->validate($request, NovelWriting::$rules);
@@ -127,10 +127,10 @@ class NovelWritingController extends Controller
         // 該当するデータを上書きして保存する
         $novelWriting->fill($novelWriting_form)->save();
       
-        $history = new History();
-        $history->news_id = $news->id;
-        $history->edited_at = Carbon::now();
-        $history->save();
+        // $history = new History();
+        // $history->news_id = $news->id;
+        // $history->edited_at = Carbon::now();
+        // $history->save();
     
 
       return redirect()->route('admin.novel_writings.index');
@@ -142,10 +142,10 @@ class NovelWritingController extends Controller
      * @param  \App\NovelWriting  $novelWriting
      * @return \Illuminate\Http\Response
      */
-    public function delete(Request $request, $id, NovelWriting $novelWriting)
+    public function destroy(Request $request, $id, NovelWriting $novelWriting)
     {
         // 該当するNews Modelを取得
-        $novelWriting = NovelWriting::find($request->id);
+        // $novelWriting = NovelWriting::find($request->id);
         // 削除する
         $novelWriting->delete();
         return redirect()->route('admin.novel_writings.index');
