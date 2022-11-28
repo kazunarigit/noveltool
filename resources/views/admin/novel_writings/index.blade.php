@@ -48,7 +48,7 @@
                                             <a href="{{ route('admin.novel_writings.edit', $novel->id) }}">編集</a>
                                         </div>
                                         <div>
-                                            <a href="{{ route('admin.novel_writings.destroy', $novel->id) }}">削除</a>
+                                            <a href="{{ route('admin.novel_writings.delete', $novel->id) }}">削除</a>
                                         </div>
                                     </td>
                                 </tr>
