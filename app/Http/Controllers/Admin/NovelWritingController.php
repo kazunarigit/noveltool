@@ -142,7 +142,7 @@ class NovelWritingController extends Controller
      * @param  \App\NovelWriting  $novelWriting
      * @return \Illuminate\Http\Response
      */
-    public function delete(NovelWriting $novelWriting)
+    public function destroy(NovelWriting $novelWriting)
     {
         // 該当するNews Modelを取得
         // $novelWriting = NovelWriting::find($request->id);
