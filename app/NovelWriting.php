@@ -6,11 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class NovelWriting extends Model
 {
-    // 以下を追記
-    protected $guarded = array('id');
 
-    public static $rules = array(
-        'title' => 'required',
-        'content' => 'required',
-    );
+    protected $table = 'novel_writings';
+
+
 }
