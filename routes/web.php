@@ -15,10 +15,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 */
+Route::get('/', 'NovelWritingController@index');
 
 Route::group(['prefix' => 'admin', 'as'=> 'admin.', 'middleware' => 'auth'], function() {
     Route::resource('novel_writings', 'Admin\NovelWritingController');
 });
-Route::get('/index', 'NovelWritingController@index');
+
 Auth::routes();
-Route::get('/', 'NovelWritingController@index');

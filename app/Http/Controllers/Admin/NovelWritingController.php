@@ -21,10 +21,10 @@ class NovelWritingController extends Controller
      */
     public function index(Request $request)
     {
-        $cond_title = $request->cond_title;
-        if ($cond_title != '') {
+        $cond_title = $request->input('cond_title');
+        if (!empty($cond_title)) {
         // 検索されたら検索結果を取得する
-            $posts = NovelWriting::where('title', $cond_title)->get();
+            $posts = NovelWriting::where('title', 'like', "%{$cond_title}%")->get();
         }else{
         // それ以外はすべてのニュースを取得する
             $posts = NovelWriting::all();
@@ -56,12 +56,8 @@ class NovelWritingController extends Controller
         $this->validate($request, NovelWriting::$rules);
 
         $novelwriting = new NovelWriting;
-        $form = $request->all();
-      
-        // フォームから送信されてきた_tokenを削除する
-        unset($form['_token']);
-      
-        $novelwriting->fill($form);
+        $novelwriting->title = $request->title;
+        $novelwriting->content = $request->content;
         $novelwriting->save();
         return redirect()->route('admin.novel_writings.index');
     }
@@ -72,17 +68,10 @@ class NovelWritingController extends Controller
      * @param  \App\NovelWriting  $novelWriting
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $request, $id, NovelWriting $novelWriting)
+    public function show(Request $request, $id)
     {
-        $cond_title = $request->cond_title;
-        if ($cond_title != '') {
-        // 検索されたら検索結果を取得する
-            $posts = NovelWriting::where('title', $cond_title)->get();
-        }else{
-        // それ以外はすべてのニュースを取得する
-            $posts = NovelWriting::all();
-        }
-        return view('admin.novel_writings.index', ['admin' => User::findOrFail($id)]);
+        $novelWriting = NovelWriting::find($id);
+        return view('admin.novel_writings.edit', ['novelWriting' => $novelWriting]);
     }
 
     /**
@@ -91,16 +80,12 @@ class NovelWritingController extends Controller
      * @param  \App\NovelWriting  $novelWriting
      * @return \Illuminate\Http\Response
      */
-    public function edit(NovelWriting $novelWriting)
+    public function edit($id)
     {
-        // News Modelからデータを取得する
-        /*
-        $novelWriting = NovelWriting::find($request->id);
-        if (empty($novelWriting)) {
-        abort(404);    
-        }
-        */
-        return view('admin.novel_writings.edit', ['novelwriting_form' => $novelWriting]);
+    
+        
+        $novelwriting_form = App\NovelWriting::find($id);
+        return view('admin.novel_writings.edit', ['novelwriting_form' => $novelWriting_form]);
     }
     
     /**
@@ -110,27 +95,20 @@ class NovelWritingController extends Controller
      * @param  \App\NovelWriting  $novelWriting
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, NovelWriting $novelWriting)
+    public function update(Request $request, $id)
     {
         // Validationをかける
         $this->validate($request, NovelWriting::$rules);
-        // News Modelからデータを取得する
-        $novelWriting = NovelWriting::find($request->id);
-        // 送信されてきたフォームデータを格納する
-        $novelWriting_form = $request->all();
-       
-
-      
-        unset($novelWriting_form['remove']);
-        unset($novelWriting_form['_token']);
+        // Modelからデータを取得する
+        $novelWriting = NovelWriting::find($id);
+        // 
+        $novelWriting->title = $request->title;
+        $novelWriting->content = $request->content;
 
         // 該当するデータを上書きして保存する
-        $novelWriting->fill($novelWriting_form)->save();
+        $novelWriting->save();
       
-        // $history = new History();
-        // $history->news_id = $news->id;
-        // $history->edited_at = Carbon::now();
-        // $history->save();
+        
     
 
       return redirect()->route('admin.novel_writings.index');
