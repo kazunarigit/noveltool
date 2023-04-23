@@ -85,7 +85,7 @@ class NovelWritingController extends Controller
     
         
         $novelwriting_form = App\NovelWriting::find($id);
-        return view('admin.novel_writings.edit', ['novelwriting_form' => $novelWriting_form]);
+        return view('admin.novel_writings.edit', ['novelwriting_form' => $novelwriting_form]);
     }
     
     /**
