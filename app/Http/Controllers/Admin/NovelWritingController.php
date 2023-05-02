@@ -83,9 +83,8 @@ class NovelWritingController extends Controller
     public function edit($id)
     {
     
-        
-        $novelwriting_form = App\NovelWriting::find($id);
-        return view('admin.novel_writings.edit', ['novelwriting_form' => $novelwriting_form]);
+        $novel = NovelWriting::findOrFail($id);
+        return view('novel_writings.edit', ['novel' => $novel]);
     }
     
     /**
@@ -97,21 +96,11 @@ class NovelWritingController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // Validationをかける
-        $this->validate($request, NovelWriting::$rules);
-        // Modelからデータを取得する
-        $novelWriting = NovelWriting::find($id);
-        // 
-        $novelWriting->title = $request->title;
-        $novelWriting->content = $request->content;
+        $novel = NovelWriting::findOrFail($id);
+        // update the novel writing
+        return redirect()->route('novel_writings.show', ['novel_writing' => $novel->id]);
 
-        // 該当するデータを上書きして保存する
-        $novelWriting->save();
       
-        
-    
-
-      return redirect()->route('admin.novel_writings.index');
     }
     
     /**
