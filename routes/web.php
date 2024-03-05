@@ -17,7 +17,7 @@ Route::get('/', function () {
 */
 Route::get('/', 'NovelWritingController@index');
 
-Route::controller(NovelWritingController::class)->group(['prefix' => 'admin', 'as'=> 'admin.', 'middleware' => 'auth'], function() {
+Route::group(['prefix' => 'admin', 'as'=> 'admin.', 'middleware' => 'auth'], function() {
     Route::resource('novel_writings', 'Admin\NovelWritingController');
     
     Route::get('/novel_writings/{novel_writing}/edit', 'NovelWritingController@edit')->name('novel_writings.edit');
