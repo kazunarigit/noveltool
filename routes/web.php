@@ -10,6 +10,7 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+use App\Http\Controllers\NovelWritingController;
 /*
 Route::get('/', function () {
     return view('welcome');
@@ -22,7 +23,7 @@ Route::group(['prefix' => 'admin', 'as'=> 'admin.', 'middleware' => 'auth'], fun
     Route::resource('novel_writings', 'Admin\NovelWritingController');
     
     //追記（3/6）
-    Route::get('admin/novel_writings/crerate','NovelWritingController@add');
+    Route::get('admin/novel_writings/create','NovelWritingController@add');
     Route::post('admin/novel_writings/','NovelWritingController@store');
     Route::get('admin/novel_writings/{novel_writing}','NovelWtingController@show');
     //ここまで追記
