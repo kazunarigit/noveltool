@@ -24,12 +24,13 @@ Route::group(['prefix' => 'admin', 'as'=> 'admin.', 'middleware' => 'auth'], fun
     
     //追記（3/6）
     Route::get('admin/novel_writings/create','NovelWritingController@add');
-    Route::post('admin/novel_writings/','NovelWritingController@store');
-    Route::get('admin/novel_writings/{novel_writing}','NovelWtingController@show');
+    Route::post('admin/novel_writings/create','NovelWritingController@create');
+    Route::get('admin/novel_writings','NovelWritingController@index');
+    Route::get('admin/novel_writings/delete','NovelWritingController@delete');
     //ここまで追記
     
     Route::get('/novel_writings/{novel_writing}/edit', 'NovelWritingController@edit')->name('novel_writings.edit');
-    Route::put('/novel_writings/{novel_writing}/', 'NovelWritingController@update')->name('novel_writings.update');
+    Route::put('/novel_writings/{novel_writing}/edit', 'NovelWritingController@update')->name('novel_writings.update');
 
 });
 
