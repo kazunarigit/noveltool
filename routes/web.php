@@ -16,14 +16,15 @@ Route::get('/', function () {
 });
 */
 Route::get('/', 'NovelWritingController@index');
+Route::get('/home', 'NovelWritingController@index');
 
 Route::group(['prefix' => 'admin', 'as'=> 'admin.', 'middleware' => 'auth'], function() {
     Route::resource('novel_writings', 'Admin\NovelWritingController');
     
     //追記（3/6）
-    Route::get('admin/novel_writings/crerate','add');
-    Route::post('admin/novel_writings/','store');
-    Route::get('admin/novel_writings/{novel_writing}','show');
+    Route::get('admin/novel_writings/crerate','NovelWritingController@add');
+    Route::post('admin/novel_writings/','NovelWritingController@store');
+    Route::get('admin/novel_writings/{novel_writing}','NovelWtingController@show');
     //ここまで追記
     
     Route::get('/novel_writings/{novel_writing}/edit', 'NovelWritingController@edit')->name('novel_writings.edit');
