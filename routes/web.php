@@ -20,8 +20,14 @@ Route::get('/', 'NovelWritingController@index');
 Route::group(['prefix' => 'admin', 'as'=> 'admin.', 'middleware' => 'auth'], function() {
     Route::resource('novel_writings', 'Admin\NovelWritingController');
     
+    //追記（3/6）
+    Route::get('admin/novel_writings/crerate','add');
+    Route::post('admin/novel_writings/','store');
+    Route::get('admin/novel_writings/{novel_writing}','show');
+    //ここまで追記
+    
     Route::get('/novel_writings/{novel_writing}/edit', 'NovelWritingController@edit')->name('novel_writings.edit');
-    Route::put('/novel_writings/{novel_writing}', 'NovelWritingController@update')->name('novel_writings.update');
+    Route::put('/novel_writings/{novel_writing}/', 'NovelWritingController@update')->name('novel_writings.update');
 
 });
 
